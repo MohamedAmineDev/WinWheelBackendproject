@@ -1,0 +1,18 @@
+package com.packages.WinWheelBackendproject.repositories;
+
+import com.packages.WinWheelBackendproject.models.Utilisateur;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
+
+public interface UtilisateurRepository extends CrudRepository<Utilisateur, Long> {
+    Utilisateur findByUsername(String username);
+
+    @Query("select u from Utilisateur u where role='ROLE_PLAYER'")
+    List<Utilisateur> findAllPlayers();
+
+    @Query("select u from Utilisateur u where role='ROLE_ADMIN'")
+    List<Utilisateur> findAllAdmins();
+}

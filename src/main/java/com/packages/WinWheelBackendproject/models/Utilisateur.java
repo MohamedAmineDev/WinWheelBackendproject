@@ -39,6 +39,7 @@ public class Utilisateur implements Serializable {
         this.password = password;
         this.email = email;
         this.address = address;
+        this.dateCreation = LocalDate.now();
     }
 
     public Utilisateur(Long id) {
