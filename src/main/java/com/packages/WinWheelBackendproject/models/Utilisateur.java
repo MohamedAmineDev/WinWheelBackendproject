@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -35,6 +36,9 @@ public class Utilisateur implements Serializable {
     private String address;
     private LocalDate dateCreation;
     private String role;
+    @OneToMany(mappedBy = "id")
+    @JsonIgnore
+    private List<Cadeau> cadeaux;
 
     //Constructor
 
