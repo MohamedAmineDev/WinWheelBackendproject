@@ -35,4 +35,10 @@ public class GameController implements IGameManagement {
     public boolean addAGame(@PathVariable("id") Long userId, @RequestBody Jeu jeu) {
         return gameService.addAGame(userId, jeu);
     }
+
+    @Override
+    @PutMapping(path = "admin/update_game/{id}")
+    public boolean updateAGame(@PathVariable("id") Long id, @RequestBody Jeu jeu) {
+        return gameService.updateAGame(id, jeu);
+    }
 }

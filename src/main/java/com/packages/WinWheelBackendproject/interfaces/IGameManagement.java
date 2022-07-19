@@ -10,4 +10,6 @@ public interface IGameManagement {
     List<Jeu> getGamesByUserId(Long userId);
 
     boolean addAGame(Long userId, Jeu jeu);
+
+    boolean updateAGame(Long id, Jeu jeu);
 }

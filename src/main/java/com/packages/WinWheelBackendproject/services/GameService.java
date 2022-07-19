@@ -38,4 +38,20 @@ public class GameService implements IGameManagement {
             return false;
         }
     }
+
+    @Override
+    public boolean updateAGame(Long id, Jeu jeu) {
+        try {
+            Jeu sameGame = getGameById(id);
+            if (jeu.getNom() != null && jeu.getNom() != "" && jeu.getNom() != sameGame.getNom()) {
+                sameGame.setNom(jeu.getNom());
+            }
+            if (jeu.getDescription() != null && jeu.getDescription() != "" && jeu.getDescription() != sameGame.getDescription()) {
+                sameGame.setDescription(jeu.getDescription());
+            }
+            return gameRepository.save(sameGame) != null;
+        } catch (Exception exception) {
+            return false;
+        }
+    }
 }
