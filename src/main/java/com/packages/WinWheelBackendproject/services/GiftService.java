@@ -21,14 +21,14 @@ public class GiftService implements IGiftManagement {
 
     @Override
     public List<Cadeau> getAllGiftByUserId(Long idUser) {
-        return cadeauRepository.findByUtilisateurId(idUser);
+        return cadeauRepository.findByAdminId(idUser);
     }
 
     @Override
     public boolean addGift(Cadeau cadeau, Long userId) {
         try {
             Utilisateur utilisateur = new Utilisateur(userId);
-            cadeau.setUtilisateur(utilisateur);
+            cadeau.setAdmin(utilisateur);
             //utilisateur.getCadeaux().add(cadeau);
             cadeauRepository.save(cadeau);
             return true;

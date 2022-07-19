@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface GiftRepository extends CrudRepository<Cadeau, Long> {
-    List<Cadeau> findByUtilisateurId(Long id);
+    List<Cadeau> findByAdminId(Long id);
 }

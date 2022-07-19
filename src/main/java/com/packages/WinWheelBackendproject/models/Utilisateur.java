@@ -39,6 +39,9 @@ public class Utilisateur implements Serializable {
     @OneToMany(mappedBy = "id")
     @JsonIgnore
     private List<Cadeau> cadeaux;
+    @OneToMany(mappedBy = "id")
+    @JsonIgnore
+    private List<Jeu> jeux;
 
     //Constructor
 

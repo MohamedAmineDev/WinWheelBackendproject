@@ -17,23 +17,21 @@ import java.time.LocalDate;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table
-public class Cadeau implements Serializable {
+public class Jeu implements Serializable {
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue
     private Long id;
     private String nom;
     private String description;
-    private Integer stock;
-    private LocalDate dateDernierModification;
-    @ManyToOne()
+    private LocalDate dateCreation;
+    @ManyToOne
     @JsonIgnore
     private Utilisateur admin;
 
-    public Cadeau(@JsonProperty("nom") String nom, @JsonProperty("description") String description, @JsonProperty("stock") Integer stock) {
+    public Jeu(@JsonProperty("nom") String nom, @JsonProperty("description") String description) {
         this.nom = nom;
         this.description = description;
-        this.stock = stock;
-        this.dateDernierModification = LocalDate.now();
+        this.dateCreation = LocalDate.now();
     }
 }
