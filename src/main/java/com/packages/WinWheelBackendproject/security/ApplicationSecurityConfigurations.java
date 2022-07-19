@@ -1,12 +1,16 @@
 package com.packages.WinWheelBackendproject.security;
 
+import com.packages.WinWheelBackendproject.enums.Roles;
 import com.packages.WinWheelBackendproject.services.UserDetailsServiceImp;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Role;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -16,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @AllArgsConstructor
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ApplicationSecurityConfigurations extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -42,12 +47,11 @@ public class ApplicationSecurityConfigurations extends WebSecurityConfigurerAdap
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf()
-                .disable()
+        http.csrf().disable()
                 .authorizeRequests()
-                /// All authorizations
-                .antMatchers("/app/api/manage_player/add_player").permitAll()
-                .antMatchers("/app/api/manage_player/players").hasRole("ROLE_ADMIN")
+                .antMatchers("/app/api/manage_admin/add_admin", "/app/api/manage_player/add_player").permitAll()
+                .antMatchers("/app/api/manage_admin/admins", "/app/api/manage_player/").hasRole("ADMIN")
+                .antMatchers("/app/api/manage_user/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()

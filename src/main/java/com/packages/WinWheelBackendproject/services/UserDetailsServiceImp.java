@@ -20,7 +20,7 @@ public class UserDetailsServiceImp implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Utilisateur utilisateur = utilisateurRepository.findByUsername(username);
+        Utilisateur utilisateur = utilisateurRepository.findByEmail(username);
         if (utilisateur == null) {
             throw new UsernameNotFoundException("Cet utilisateur n'existe pas dans note base de données");
         }

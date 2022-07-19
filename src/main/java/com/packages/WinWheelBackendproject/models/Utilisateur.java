@@ -1,5 +1,7 @@
 package com.packages.WinWheelBackendproject.models;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +26,8 @@ public class Utilisateur implements Serializable {
     private Long id;
     @Column(nullable = false, unique = true)
     private String username;
+
+    @JsonIgnore
     @Column(nullable = false)
     private String password;
     @Column(nullable = false, unique = true)

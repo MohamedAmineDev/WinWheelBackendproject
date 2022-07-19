@@ -9,28 +9,23 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
 @NoArgsConstructor
-public class PlayerService implements IUserManagement {
+public class AdminService implements IUserManagement {
     @Autowired
     private UtilisateurRepository utilisateurRepository;
 
-
     @Override
     public List<Utilisateur> getAllUsers() {
-        Iterable<Utilisateur> utilisateurIterable = utilisateurRepository.findAllPlayers();
-        List<Utilisateur> utilisateurs = new ArrayList<>();
-        utilisateurIterable.forEach(utilisateur -> utilisateurs.add(utilisateur));
-        return utilisateurs;
+        return utilisateurRepository.findAllAdmins();
     }
 
     @Override
     public boolean addAUser(Utilisateur utilisateur) {
-        utilisateur.setRole(Roles.ROLE_PLAYER.name());
+        utilisateur.setRole(Roles.ROLE_ADMIN.name());
         return utilisateurRepository.save(utilisateur) != null;
     }
 }

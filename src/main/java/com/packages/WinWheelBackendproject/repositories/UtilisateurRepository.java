@@ -10,6 +10,8 @@ import java.util.List;
 public interface UtilisateurRepository extends CrudRepository<Utilisateur, Long> {
     Utilisateur findByUsername(String username);
 
+    Utilisateur findByEmail(String email);
+
     @Query("select u from Utilisateur u where role='ROLE_PLAYER'")
     List<Utilisateur> findAllPlayers();
 
