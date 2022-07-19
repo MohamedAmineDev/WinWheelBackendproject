@@ -33,4 +33,5 @@ public class PlayerService implements IUserManagement {
         utilisateur.setRole(Roles.ROLE_PLAYER.name());
         return utilisateurRepository.save(utilisateur) != null;
     }
+
 }

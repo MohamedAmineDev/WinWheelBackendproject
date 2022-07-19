@@ -4,8 +4,8 @@ import lombok.Getter;
 
 @Getter
 public enum Roles {
-    ROLE_ADMIN("ROLE_ADMIN"),
-    ROLE_PLAYER("ROLE_ADMIN");
+    ROLE_ADMIN("ADMIN"),
+    ROLE_PLAYER("PLAYER");
 
     private String permission;
 

@@ -9,4 +9,6 @@ public interface IUserManagement {
     List<Utilisateur> getAllUsers();
 
     boolean addAUser(Utilisateur utilisateur);
+
+    
 }
