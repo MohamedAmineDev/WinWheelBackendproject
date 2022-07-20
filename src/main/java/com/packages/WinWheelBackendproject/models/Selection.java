@@ -29,6 +29,8 @@ public class Selection implements Serializable {
     @OneToMany(mappedBy = "id")
     @JsonIgnore
     List<Cadeau> cadeaux;
+    @OneToMany(mappedBy = "id")
+    List<Essai> essais;
 
     public Selection(Long id) {
         this.id = id;
