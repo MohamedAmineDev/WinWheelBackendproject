@@ -1,14 +1,8 @@
 package com.packages.WinWheelBackendproject.services;
 
 import com.packages.WinWheelBackendproject.interfaces.IPlayManagement;
-import com.packages.WinWheelBackendproject.models.Essai;
-import com.packages.WinWheelBackendproject.models.Jeu;
-import com.packages.WinWheelBackendproject.models.Selection;
-import com.packages.WinWheelBackendproject.models.Utilisateur;
-import com.packages.WinWheelBackendproject.repositories.GameRepository;
-import com.packages.WinWheelBackendproject.repositories.PlayRepository;
-import com.packages.WinWheelBackendproject.repositories.SelectionRepository;
-import com.packages.WinWheelBackendproject.repositories.UtilisateurRepository;
+import com.packages.WinWheelBackendproject.models.*;
+import com.packages.WinWheelBackendproject.repositories.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +20,8 @@ public class PlayService implements IPlayManagement {
     private SelectionRepository selectionRepository;
     @Autowired
     private UtilisateurRepository utilisateurRepository;
+    @Autowired
+    private GiftRepository giftRepository;
 
     @Override
     public boolean alreadyPlayedTheGame(Long playerId, Long gameId) {
@@ -54,6 +50,15 @@ public class PlayService implements IPlayManagement {
             Selection selection = selectionRepository.findByJeuId(gameId);
             essai.setPlayer(player);
             essai.setSelection(selection);
+            if (essai.getStatut() == "win") {
+                Cadeau cadeau = giftRepository.findById(essai.getPrizeId()).orElse(null);
+                if (cadeau.getStock() > 0) {
+                    cadeau.setStock(cadeau.getStock() - 1);
+                    giftRepository.save(cadeau);
+                } else {
+                    throw new RuntimeException("The prize is not longer available try playing again");
+                }
+            }
             return playRepository.save(essai) != null;
         } catch (Exception exception) {
             return false;

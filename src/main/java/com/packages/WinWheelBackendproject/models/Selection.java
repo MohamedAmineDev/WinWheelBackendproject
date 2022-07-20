@@ -20,7 +20,12 @@ import java.util.List;
 public class Selection implements Serializable {
     @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue
+    @SequenceGenerator(
+            name = "selection_sequence",
+            sequenceName = "selection_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "selection_sequence")
     private Long id;
     private String titre;
     @OneToOne

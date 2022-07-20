@@ -15,10 +15,15 @@ import java.time.LocalDate;
 @Entity
 @Table
 public class Essai implements Serializable {
-    @EqualsAndHashCode.Include
     @ToString.Include
+    @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue
+    @SequenceGenerator(
+            name = "essai_sequence",
+            sequenceName = "essai_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "essai_sequence")
     private Long id;
     @ToString.Include
     private LocalDate dateDeLaPartie;

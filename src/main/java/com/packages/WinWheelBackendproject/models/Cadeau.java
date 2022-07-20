@@ -20,7 +20,12 @@ import java.time.LocalDate;
 public class Cadeau implements Serializable {
     @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue
+    @SequenceGenerator(
+            name = "cadeau_sequence",
+            sequenceName = "cadeau_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cadeau_sequence")
     private Long id;
     private String nom;
     private String description;

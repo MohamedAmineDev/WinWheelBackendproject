@@ -23,7 +23,12 @@ public class Utilisateur implements Serializable {
     //Attributes
     @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue
+    @SequenceGenerator(
+            name = "utilisateur_sequence",
+            sequenceName = "utilisateur_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "utilisateur_sequence")
     private Long id;
     @Column(nullable = false, unique = true)
     private String username;

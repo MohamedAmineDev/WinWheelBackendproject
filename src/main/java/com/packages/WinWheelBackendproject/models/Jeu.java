@@ -20,7 +20,12 @@ import java.time.LocalDate;
 public class Jeu implements Serializable {
     @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue
+    @SequenceGenerator(
+            name = "jeu_sequence",
+            sequenceName = "jeu_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jeu_sequence")
     private Long id;
     private String nom;
     private String description;
