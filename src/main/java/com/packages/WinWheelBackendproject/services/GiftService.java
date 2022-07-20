@@ -2,6 +2,7 @@ package com.packages.WinWheelBackendproject.services;
 
 import com.packages.WinWheelBackendproject.interfaces.IGiftManagement;
 import com.packages.WinWheelBackendproject.models.Cadeau;
+import com.packages.WinWheelBackendproject.models.Selection;
 import com.packages.WinWheelBackendproject.models.Utilisateur;
 import com.packages.WinWheelBackendproject.repositories.GiftRepository;
 import lombok.AllArgsConstructor;
@@ -60,5 +61,17 @@ public class GiftService implements IGiftManagement {
     @Override
     public Cadeau getGiftById(Long id) {
         return cadeauRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public boolean addAGiftIntoTheSelection(Long idSelection, Long giftId) {
+        try {
+            Cadeau cadeau = getGiftById(giftId);
+            Selection selection = new Selection(idSelection);
+            cadeau.setSelection(selection);
+            return cadeauRepository.save(cadeau) != null;
+        } catch (Exception exception) {
+            return false;
+        }
     }
 }

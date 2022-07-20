@@ -29,6 +29,8 @@ public class Cadeau implements Serializable {
     @ManyToOne()
     @JsonIgnore
     private Utilisateur admin;
+    @ManyToOne
+    private Selection selection;
 
     public Cadeau(@JsonProperty("nom") String nom, @JsonProperty("description") String description, @JsonProperty("stock") Integer stock) {
         this.nom = nom;

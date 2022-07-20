@@ -9,35 +9,32 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.List;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table
-public class Jeu implements Serializable {
+public class Selection implements Serializable {
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue
     private Long id;
-    private String nom;
-    private String description;
-    private LocalDate dateCreation;
-    @ManyToOne
-    @JsonIgnore
-    private Utilisateur admin;
+    private String titre;
     @OneToOne
-    private Selection selection;
+    @JsonIgnore
+    private Jeu jeu;
+    @OneToMany(mappedBy = "id")
+    @JsonIgnore
+    List<Cadeau> cadeaux;
 
-    public Jeu(@JsonProperty("nom") String nom, @JsonProperty("description") String description) {
-        this.nom = nom;
-        this.description = description;
-        this.dateCreation = LocalDate.now();
+    public Selection(Long id) {
+        this.id = id;
     }
 
-    public Jeu(Long id) {
-        this.id = id;
+    public Selection(@JsonProperty("titre") String titre) {
+        this.titre = titre;
     }
 }

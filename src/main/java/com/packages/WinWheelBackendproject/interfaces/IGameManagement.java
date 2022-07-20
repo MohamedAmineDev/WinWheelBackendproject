@@ -12,4 +12,6 @@ public interface IGameManagement {
     boolean addAGame(Long userId, Jeu jeu);
 
     boolean updateAGame(Long id, Jeu jeu);
+
+
 }
