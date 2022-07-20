@@ -3,6 +3,7 @@ package com.packages.WinWheelBackendproject.api;
 import com.packages.WinWheelBackendproject.interfaces.IUserManagement;
 import com.packages.WinWheelBackendproject.models.Utilisateur;
 import com.packages.WinWheelBackendproject.services.AdminService;
+import com.packages.WinWheelBackendproject.services.EmailingService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class AdminController implements IUserManagement {
     private AdminService adminService;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private EmailingService emailingService;
 
     @Override
     @GetMapping(path = "admins")
@@ -32,6 +35,10 @@ public class AdminController implements IUserManagement {
     @PostMapping(path = "add_admin")
     public boolean addAUser(@RequestBody Utilisateur utilisateur) {
         utilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
-        return adminService.addAUser(utilisateur);
+        boolean test = adminService.addAUser(utilisateur);
+        if (test) {
+            emailingService.sendAnEmail(utilisateur.getEmail(), "Account creation", "Good morning!\nThis is to informe you that your account has been created successfully !\nHave a nice day !");
+        }
+        return test;
     }
 }
