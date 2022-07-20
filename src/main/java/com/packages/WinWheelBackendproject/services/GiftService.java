@@ -74,4 +74,9 @@ public class GiftService implements IGiftManagement {
             return false;
         }
     }
+
+    @Override
+    public List<Cadeau> getAllGiftsOfASelection(Long selectionId) {
+        return cadeauRepository.findBySelectionId(selectionId);
+    }
 }

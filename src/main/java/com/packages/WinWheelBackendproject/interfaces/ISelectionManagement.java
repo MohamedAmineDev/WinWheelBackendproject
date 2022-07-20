@@ -13,5 +13,7 @@ public interface ISelectionManagement {
 
     boolean setTheGameOfASelection(Long idSelection, Long gameId);
 
+    Selection getSelectionByGameId(Long gameId);
 
+    Selection getSelectionByGiftId(Long giftId);
 }

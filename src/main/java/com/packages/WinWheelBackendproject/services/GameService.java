@@ -54,4 +54,9 @@ public class GameService implements IGameManagement {
             return false;
         }
     }
+
+    @Override
+    public Jeu getGameBySelectionId(Long selectionId) {
+        return gameRepository.findBySelectionId(selectionId);
+    }
 }

@@ -69,4 +69,14 @@ public class SelectionService implements ISelectionManagement {
             return false;
         }
     }
+
+    @Override
+    public Selection getSelectionByGameId(Long gameId) {
+        return selectionRepository.findByJeuId(gameId);
+    }
+
+    @Override
+    public Selection getSelectionByGiftId(Long giftId) {
+        return selectionRepository.findByGiftId(giftId);
+    }
 }

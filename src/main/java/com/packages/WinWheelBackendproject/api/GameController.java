@@ -41,4 +41,10 @@ public class GameController implements IGameManagement {
     public boolean updateAGame(@PathVariable("id") Long id, @RequestBody Jeu jeu) {
         return gameService.updateAGame(id, jeu);
     }
+
+    @Override
+    @GetMapping(path = "admin/find_game/{selectionId}")
+    public Jeu getGameBySelectionId(@PathVariable("selectionId") Long selectionId) {
+        return gameService.getGameBySelectionId(selectionId);
+    }
 }

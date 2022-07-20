@@ -41,4 +41,16 @@ public class SelectionController implements ISelectionManagement {
     public boolean setTheGameOfASelection(@PathVariable("idSelection") Long idSelection, @PathVariable("gameId") Long gameId) {
         return selectionService.setTheGameOfASelection(idSelection, gameId);
     }
+
+    @Override
+    @GetMapping(path = "selection/game/{gameId}")
+    public Selection getSelectionByGameId(@PathVariable("gameId") Long gameId) {
+        return selectionService.getSelectionByGameId(gameId);
+    }
+
+    @Override
+    @GetMapping(path = "selection/gift/{giftId}")
+    public Selection getSelectionByGiftId(@PathVariable("giftId") Long giftId) {
+        return selectionService.getSelectionByGiftId(giftId);
+    }
 }

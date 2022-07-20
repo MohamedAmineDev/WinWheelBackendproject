@@ -13,5 +13,6 @@ public interface IGameManagement {
 
     boolean updateAGame(Long id, Jeu jeu);
 
+    Jeu getGameBySelectionId(Long selectionId);
 
 }

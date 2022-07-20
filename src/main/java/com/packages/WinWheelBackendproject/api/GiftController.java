@@ -47,5 +47,11 @@ public class GiftController implements IGiftManagement {
     public boolean addAGiftIntoTheSelection(@PathVariable("idSelection") Long idSelection, @PathVariable("giftId") Long giftId) {
         return giftService.addAGiftIntoTheSelection(idSelection, giftId);
     }
+
+    @Override
+    @GetMapping(path = "admin/selection/gifts/{selectionId}")
+    public List<Cadeau> getAllGiftsOfASelection(@PathVariable("selectionId") Long selectionId) {
+        return giftService.getAllGiftsOfASelection(selectionId);
+    }
 }
 

@@ -14,4 +14,6 @@ public interface IGiftManagement {
     Cadeau getGiftById(Long id);
 
     boolean addAGiftIntoTheSelection(Long idSelection, Long giftId);
+
+    List<Cadeau> getAllGiftsOfASelection(Long selectionId);
 }

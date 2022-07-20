@@ -68,6 +68,7 @@ public class ApplicationSecurityConfigurations extends WebSecurityConfigurerAdap
                 .antMatchers(HttpMethod.POST, "/app/api/manage_selection/admin/**").hasRole(Roles.ROLE_ADMIN.getPermission())
                 .antMatchers(HttpMethod.PUT, "/app/api/manage_selection/admin/**").hasRole(Roles.ROLE_ADMIN.getPermission())
                 .antMatchers(HttpMethod.GET, "/app/api/manage_selection/admin/**").hasRole(Roles.ROLE_ADMIN.getPermission())
+                .antMatchers(HttpMethod.GET, "/app/api/manage_selection/selection/**").hasAnyRole(Roles.ROLE_ADMIN.getPermission(), Roles.ROLE_PLAYER.getPermission())
                 .anyRequest()
                 .authenticated()
                 .and()
