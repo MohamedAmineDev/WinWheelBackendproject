@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -58,5 +59,13 @@ public class GameService implements IGameManagement {
     @Override
     public Jeu getGameBySelectionId(Long selectionId) {
         return gameRepository.findBySelectionId(selectionId);
+    }
+
+    @Override
+    public List<Jeu> getAllGames() {
+        Iterable<Jeu> jeuIterable = gameRepository.findAll();
+        List<Jeu> jeux = new ArrayList<>();
+        jeuIterable.forEach(jeu -> jeux.add(jeu));
+        return jeux;
     }
 }

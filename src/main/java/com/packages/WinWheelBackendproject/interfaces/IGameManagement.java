@@ -15,4 +15,6 @@ public interface IGameManagement {
 
     Jeu getGameBySelectionId(Long selectionId);
 
+    List<Jeu> getAllGames();
+
 }

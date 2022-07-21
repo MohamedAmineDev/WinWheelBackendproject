@@ -47,4 +47,10 @@ public class GameController implements IGameManagement {
     public Jeu getGameBySelectionId(@PathVariable("selectionId") Long selectionId) {
         return gameService.getGameBySelectionId(selectionId);
     }
+
+    @Override
+    @GetMapping(path = "games")
+    public List<Jeu> getAllGames() {
+        return gameService.getAllGames();
+    }
 }
