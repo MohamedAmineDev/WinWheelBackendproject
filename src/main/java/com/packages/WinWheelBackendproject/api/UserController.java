@@ -39,7 +39,11 @@ public class UserController {
     public boolean checkUser(@RequestBody Utilisateur utilisateur) {
         //utilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
         //System.out.println(utilisateur.getPassword());
-        //return userService.findUserByEmailAndPassword(utilisateur.getEmail(), utilisateur.getPassword());
-        return true;
+        return userService.findUserByEmailAndPassword(utilisateur.getEmail(), utilisateur.getPassword());
+    }
+
+    @GetMapping(path = "user/username/{email}")
+    public Utilisateur getUsername(@PathVariable("email") String email) {
+        return userService.getUsername(email);
     }
 }

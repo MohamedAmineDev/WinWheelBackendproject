@@ -44,6 +44,10 @@ public class UserService {
     }
 
     public boolean findUserByEmailAndPassword(String email, String password) {
-        return utilisateurRepository.findByEmailAndPassword(email, password) != null;
+        return true;
+    }
+
+    public Utilisateur getUsername(String email) {
+        return utilisateurRepository.findByEmail(email);
     }
 }
