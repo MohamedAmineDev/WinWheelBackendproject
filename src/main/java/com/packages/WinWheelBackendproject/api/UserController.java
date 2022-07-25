@@ -34,4 +34,12 @@ public class UserController {
         utilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
         return userService.ChangePassword(id, utilisateur);
     }
+
+    @PostMapping(path = "user/check_user")
+    public boolean checkUser(@RequestBody Utilisateur utilisateur) {
+        //utilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
+        //System.out.println(utilisateur.getPassword());
+        //return userService.findUserByEmailAndPassword(utilisateur.getEmail(), utilisateur.getPassword());
+        return true;
+    }
 }

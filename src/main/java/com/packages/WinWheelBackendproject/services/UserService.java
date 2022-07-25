@@ -42,4 +42,8 @@ public class UserService {
             return false;
         }
     }
+
+    public boolean findUserByEmailAndPassword(String email, String password) {
+        return utilisateurRepository.findByEmailAndPassword(email, password) != null;
+    }
 }

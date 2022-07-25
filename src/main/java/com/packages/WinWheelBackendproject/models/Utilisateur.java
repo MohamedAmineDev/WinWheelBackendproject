@@ -23,11 +23,7 @@ public class Utilisateur implements Serializable {
     //Attributes
     @EqualsAndHashCode.Include
     @Id
-    @SequenceGenerator(
-            name = "utilisateur_sequence",
-            sequenceName = "utilisateur_sequence",
-            allocationSize = 1
-    )
+    @SequenceGenerator(name = "utilisateur_sequence", sequenceName = "utilisateur_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "utilisateur_sequence")
     private Long id;
 
@@ -60,7 +56,11 @@ public class Utilisateur implements Serializable {
         this.dateCreation = LocalDate.now();
     }
 
+
+
     public Utilisateur(Long id) {
         this.id = id;
     }
+
+
 }

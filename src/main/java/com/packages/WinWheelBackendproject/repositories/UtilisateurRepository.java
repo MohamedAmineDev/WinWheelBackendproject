@@ -17,4 +17,9 @@ public interface UtilisateurRepository extends CrudRepository<Utilisateur, Long>
 
     @Query("select u from Utilisateur u where role='ROLE_ADMIN'")
     List<Utilisateur> findAllAdmins();
+
+    @Query("select u from Utilisateur u where u.email=:email and u.password=:password")
+    Utilisateur findByEmailAndByPassword(String email, String password);
+
+    Utilisateur findByEmailAndPassword(String email, String password);
 }

@@ -35,11 +35,13 @@ public class Jeu implements Serializable {
     private Utilisateur admin;
     @OneToOne
     private Selection selection;
+    private String image;
 
-    public Jeu(@JsonProperty("nom") String nom, @JsonProperty("description") String description) {
+    public Jeu(@JsonProperty("nom") String nom, @JsonProperty("description") String description, @JsonProperty("image") String image) {
         this.nom = nom;
         this.description = description;
         this.dateCreation = LocalDate.now();
+        this.image = image;
     }
 
     public Jeu(Long id) {
