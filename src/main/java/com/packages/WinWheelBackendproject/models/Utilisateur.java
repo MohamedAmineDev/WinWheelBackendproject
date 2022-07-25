@@ -30,7 +30,7 @@ public class Utilisateur implements Serializable {
     )
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "utilisateur_sequence")
     private Long id;
-    @Column(nullable = false, unique = true)
+
     private String username;
 
     @JsonIgnore
