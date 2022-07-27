@@ -20,7 +20,12 @@ import java.time.LocalDate;
 public class Jeu implements Serializable {
     @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue
+    @SequenceGenerator(
+            name = "jeu_sequence",
+            sequenceName = "jeu_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jeu_sequence")
     private Long id;
     private String nom;
     private String description;
@@ -28,10 +33,18 @@ public class Jeu implements Serializable {
     @ManyToOne
     @JsonIgnore
     private Utilisateur admin;
+    @OneToOne
+    private Selection selection;
+    private String image;
 
-    public Jeu(@JsonProperty("nom") String nom, @JsonProperty("description") String description) {
+    public Jeu(@JsonProperty("nom") String nom, @JsonProperty("description") String description, @JsonProperty("image") String image) {
         this.nom = nom;
         this.description = description;
         this.dateCreation = LocalDate.now();
+        this.image = image;
+    }
+
+    public Jeu(Long id) {
+        this.id = id;
     }
 }

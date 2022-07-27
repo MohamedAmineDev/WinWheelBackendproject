@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface GameRepository extends CrudRepository<Jeu, Long> {
     List<Jeu> findByAdminId(Long id);
+
+    Jeu findBySelectionId(Long id);
 }

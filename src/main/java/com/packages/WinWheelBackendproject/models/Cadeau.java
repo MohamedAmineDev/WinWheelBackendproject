@@ -20,15 +20,24 @@ import java.time.LocalDate;
 public class Cadeau implements Serializable {
     @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue
+    @SequenceGenerator(
+            name = "cadeau_sequence",
+            sequenceName = "cadeau_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cadeau_sequence")
     private Long id;
     private String nom;
     private String description;
     private Integer stock;
+    @JsonIgnore
     private LocalDate dateDernierModification;
     @ManyToOne()
     @JsonIgnore
     private Utilisateur admin;
+    @JsonIgnore
+    @ManyToOne
+    private Selection selection;
 
     public Cadeau(@JsonProperty("nom") String nom, @JsonProperty("description") String description, @JsonProperty("stock") Integer stock) {
         this.nom = nom;

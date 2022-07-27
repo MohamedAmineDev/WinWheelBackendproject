@@ -2,6 +2,7 @@ package com.packages.WinWheelBackendproject.api;
 
 import com.packages.WinWheelBackendproject.interfaces.IUserManagement;
 import com.packages.WinWheelBackendproject.models.Utilisateur;
+import com.packages.WinWheelBackendproject.services.EmailingService;
 import com.packages.WinWheelBackendproject.services.PlayerService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,8 @@ public class PlayerController implements IUserManagement {
     @Autowired
     private PlayerService playerService;
     @Autowired
+    private EmailingService emailingService;
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override
@@ -31,6 +34,10 @@ public class PlayerController implements IUserManagement {
     @PostMapping(path = "add_player")
     public boolean addAUser(@RequestBody Utilisateur utilisateur) {
         utilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
-        return playerService.addAUser(utilisateur);
+        boolean test = playerService.addAUser(utilisateur);
+        if (test) {
+            emailingService.sendAnEmail(utilisateur.getEmail(), "Account creation", "Good morning!\nThis is to informe you that your account has been created successfully !\nHave a nice day !");
+        }
+        return test;
     }
 }

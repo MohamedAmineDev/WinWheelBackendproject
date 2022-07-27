@@ -23,9 +23,10 @@ public class Utilisateur implements Serializable {
     //Attributes
     @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "utilisateur_sequence", sequenceName = "utilisateur_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "utilisateur_sequence")
     private Long id;
-    @Column(nullable = false, unique = true)
+
     private String username;
 
     @JsonIgnore
@@ -42,6 +43,8 @@ public class Utilisateur implements Serializable {
     @OneToMany(mappedBy = "id")
     @JsonIgnore
     private List<Jeu> jeux;
+    @OneToMany(mappedBy = "id")
+    private List<Essai> essais;
 
     //Constructor
 
@@ -53,7 +56,11 @@ public class Utilisateur implements Serializable {
         this.dateCreation = LocalDate.now();
     }
 
+
+
     public Utilisateur(Long id) {
         this.id = id;
     }
+
+
 }

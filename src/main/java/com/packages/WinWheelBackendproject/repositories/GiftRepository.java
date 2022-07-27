@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface GiftRepository extends CrudRepository<Cadeau, Long> {
     List<Cadeau> findByAdminId(Long id);
+
+    List<Cadeau> findBySelectionId(Long id);
 }

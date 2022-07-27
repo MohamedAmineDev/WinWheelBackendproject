@@ -29,9 +29,21 @@ public class UserController {
         return userService.updateAUser(id, utilisateur);
     }
 
-    @PutMapping(path = "update_user/change_password/{id}")
-    public boolean updateAPassword(@PathVariable("id") Long id, @RequestBody Utilisateur utilisateur) {
+    @PutMapping(path = "update_user/change_password/{email}")
+    public boolean updateAPassword(@PathVariable("email") String email, @RequestBody Utilisateur utilisateur) {
         utilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
-        return userService.ChangePassword(id, utilisateur);
+        return userService.ChangePassword(email, utilisateur);
+    }
+
+    @PostMapping(path = "user/check_user")
+    public boolean checkUser(@RequestBody Utilisateur utilisateur) {
+        //utilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
+        //System.out.println(utilisateur.getPassword());
+        return userService.findUserByEmailAndPassword(utilisateur.getEmail(), utilisateur.getPassword());
+    }
+
+    @GetMapping(path = "user/username/{email}")
+    public Utilisateur getUsername(@PathVariable("email") String email) {
+        return userService.getUsername(email);
     }
 }
