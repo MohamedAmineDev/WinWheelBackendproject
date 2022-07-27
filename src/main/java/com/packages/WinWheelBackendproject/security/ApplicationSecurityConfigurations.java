@@ -59,13 +59,15 @@ public class ApplicationSecurityConfigurations extends WebSecurityConfigurerAdap
                 //user/username/{email}
                 .antMatchers(HttpMethod.POST, "/app/api/manage_admin/add_admin", "/app/api/manage_player/add_player").permitAll()
                 .antMatchers(HttpMethod.GET, "/app/api/manage_admin/admins", "/app/api/manage_player/").hasRole(Roles.ROLE_ADMIN.getPermission())
+                .antMatchers(HttpMethod.PUT, "/app/api/manage_user/update_user/change_password/**").permitAll()
+                .antMatchers(HttpMethod.PUT, "/app/api/manage_user/update_user/{id}").hasAnyRole(Roles.ROLE_ADMIN.getPermission(), Roles.ROLE_PLAYER.getPermission())
                 .antMatchers(HttpMethod.GET, "/app/api/manage_user/**").hasRole(Roles.ROLE_ADMIN.getPermission())
-                .antMatchers(HttpMethod.PUT, "/app/api/manage_user/update_user/**").hasAnyRole(Roles.ROLE_ADMIN.getPermission(), Roles.ROLE_PLAYER.getPermission())
                 //Gift
                 .antMatchers(HttpMethod.GET, "/app/api/manage_gift/gift/**").hasAnyRole(Roles.ROLE_ADMIN.getPermission(), Roles.ROLE_PLAYER.getPermission())
                 .antMatchers(HttpMethod.POST, "/app/api/manage_gift/admin/**").hasRole(Roles.ROLE_ADMIN.getPermission())
                 .antMatchers(HttpMethod.PUT, "/app/api/manage_gift/admin/**").hasRole(Roles.ROLE_ADMIN.getPermission())
                 .antMatchers(HttpMethod.GET, "/app/api/manage_gift/admin/**").hasRole(Roles.ROLE_ADMIN.getPermission())
+                .antMatchers(HttpMethod.GET, "/app/api/manage_gift/user/**").hasAnyRole(Roles.ROLE_ADMIN.getPermission(),Roles.ROLE_PLAYER.getPermission())
                 //Game
                 .antMatchers(HttpMethod.GET, "/app/api/manage_game/game/**").hasAnyRole(Roles.ROLE_ADMIN.getPermission(), Roles.ROLE_PLAYER.getPermission())
                 .antMatchers(HttpMethod.POST, "/app/api/manage_game/admin/**").hasRole(Roles.ROLE_ADMIN.getPermission())

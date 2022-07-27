@@ -36,7 +36,7 @@ public class Essai implements Serializable {
     @ToString.Include
     private Long prizeId;
 
-    public Essai(@JsonProperty("statut") String statut) {
+    public Essai(@JsonProperty("statut") String statut, @JsonProperty("prizeId") Long prizeId) {
         this.statut = statut;
         this.dateDeLaPartie = LocalDate.now();
     }

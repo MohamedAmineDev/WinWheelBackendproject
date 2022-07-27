@@ -33,9 +33,9 @@ public class UserService {
         }
     }
 
-    public boolean ChangePassword(Long id, Utilisateur utilisateur) {
+    public boolean ChangePassword(String email, Utilisateur utilisateur) {
         try {
-            Utilisateur sameUser = getUserById(id);
+            Utilisateur sameUser = utilisateurRepository.findByEmail(email);
             sameUser.setPassword(utilisateur.getPassword());
             return utilisateurRepository.save(sameUser) != null;
         } catch (Exception exception) {

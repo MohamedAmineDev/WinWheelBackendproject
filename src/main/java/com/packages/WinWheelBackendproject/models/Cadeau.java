@@ -30,10 +30,12 @@ public class Cadeau implements Serializable {
     private String nom;
     private String description;
     private Integer stock;
+    @JsonIgnore
     private LocalDate dateDernierModification;
     @ManyToOne()
     @JsonIgnore
     private Utilisateur admin;
+    @JsonIgnore
     @ManyToOne
     private Selection selection;
 

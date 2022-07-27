@@ -35,6 +35,7 @@ public class Selection implements Serializable {
     @JsonIgnore
     List<Cadeau> cadeaux;
     @OneToMany(mappedBy = "id")
+    @JsonIgnore
     List<Essai> essais;
 
     public Selection(Long id) {

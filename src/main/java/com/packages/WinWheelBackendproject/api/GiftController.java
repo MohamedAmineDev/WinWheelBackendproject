@@ -49,7 +49,7 @@ public class GiftController implements IGiftManagement {
     }
 
     @Override
-    @GetMapping(path = "admin/selection/gifts/{selectionId}")
+    @GetMapping(path = "user/selection/gifts/{selectionId}")
     public List<Cadeau> getAllGiftsOfASelection(@PathVariable("selectionId") Long selectionId) {
         return giftService.getAllGiftsOfASelection(selectionId);
     }
